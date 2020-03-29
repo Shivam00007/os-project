@@ -42,3 +42,37 @@ void findWaitingTime(Process proc[], int m,int wt[])
         minm = rt[shortest]; 
         if (minm == 0) 
             minm = 100000; 
+	            if (rt[shortest] == 0) { 
+            complete++; 
+            check = false; 
+            finish_time = t + 1; 
+
+            wt[shortest] = finish_time - 
+                        proc[shortest].burstTime - 
+                        proc[shortest].arrivalTime; 
+  
+            if (wt[shortest] < 0) 
+                wt[shortest] = 0; 
+        } 
+        t++; 
+    } 
+} 
+  
+// Function to calculate the turn around time 
+void findTurnAroundTime(Process proc[], int m, 
+                        int wt[], int tat[]) 
+{ 
+    for (int i = 0; i < m; i++) 
+        tat[i] = proc[i].burstTime + wt[i]; 
+} 
+  
+// Function to the calculate of average time 
+void findavgTime(Process proc[], int m) 
+{ 
+    int wt[m], tat[m], total_wt = 0, 
+                    total_tat = 0,i; 
+
+    findWaitingTime(proc, m, wt); 
+    findTurnAroundTime(proc, m, wt, tat);  
+    printf(" Processes\t Burst time\t Waiting time\t  Turn around time\n"); 
+
