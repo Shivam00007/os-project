@@ -168,3 +168,16 @@ int main()
 	printf("Enter the priority of the queue %d\n",que1);
 	scanf("%d",&p1);
 	printf("Enter the priority of the queue %d\n",que2);
+	
+	scanf("%d",&p2);
+	if(p1<p2)
+	{
+	  Que1();
+	  Que2();
+	}
+	else if(p1>p2){
+	 Que2();
+     Que1();
+	}
+}
+
